@@ -1,0 +1,4 @@
+# virtual environment subdirectories
+env/
+
+.DS_Store
