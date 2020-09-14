@@ -31,12 +31,11 @@ def get_video_params():
     pdb.set_trace()
 
 
-def loop_frames(fr1, fr2, t_sec):
+def create_gif(fr, t_sec):
     '''
-    Play frame sequences fr1 and f2 side by side for t_sec seconds
+    Create gif from frame sequence (fr) with duration of t_sec seconds
     '''
-    fps1 = len(fr1)/t_sec
-    fps2 = len(fr2)/t_sec
+    fps = len(fr)/t_sec
     pdb.set_trace()
 
 
@@ -59,14 +58,14 @@ def main(args):
                 break
             frames.append(np.rot90(img,k=-1))
 
-        loop_frames(frames, frames, 1)
-
         plt.subplot(121)
         plt.imshow(frames[0])
         plt.subplot(122)
         plt.imshow(frames[-1])
         plt.show()
         pdb.set_trace()
+
+        create_gif(frames, 1)
 
 if __name__ == "__main__":
     main(docopt(__doc__))
