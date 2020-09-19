@@ -1,4 +1,7 @@
 # virtual environment subdirectories
-venv/
+env/
+
+# papers
+literature/
 
 *.DS_Store

@@ -27,8 +27,19 @@ from matplotlib import pyplot as plt
 import pdb
 
 
-def get_video_params():
-    pdb.set_trace()
+def get_frames_from_vid(vid_fp):
+    '''
+    '''
+    print('Loading frames for ' + fp + '...')
+    frames = []
+    vid_cap = cv2.VideoCapture(fp)
+    while True:
+        ret_val, img = vid_cap.read()
+        if not ret_val:
+            break
+        frames.append(np.rot90(img,k=-1))
+    print('Loaded %d frames from %s' % (len(frames), vid_fp))
+    return frames
 
 
 def create_gif(fr, t_sec):
@@ -49,14 +60,7 @@ def main(args):
     for fp in files:
 
         # get frames
-        print('Loading frames for ' + fp + '...')
-        frames = []
-        vid_cap = cv2.VideoCapture(fp)
-        while True:
-            ret_val, img = vid_cap.read()
-            if not ret_val:
-                break
-            frames.append(np.rot90(img,k=-1))
+        frames = get_frames_from_vid(fp)
 
         plt.subplot(121)
         plt.imshow(frames[0])
